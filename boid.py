@@ -11,7 +11,7 @@ class Boid:
         self.size = SIZE
         self.position = [x_coor,y_coor]
         self.color = (255, 255, 255) #white
-        self.velocity = [(random.random()-0.5) * SIZE / 4, (random.random()-0.5) * SIZE / 4]
+        self.velocity = [random.uniform(-1,1), random.uniform(-1,1)]
         self.acceleration = [0,0]
         self.perception = NEIGHBOURS_DISTANCE
         self.max_speed = MAX_SPEED
@@ -27,7 +27,7 @@ class Boid:
         self.velocity[1] += self.acceleration[1]
 
         movement_factor =math_helper.calculate_hypotenuse(self.velocity)
-        if movement_factor > MAX_SPEED:
+        if movement_factor > self.max_speed:
             self.velocity[0] = self.velocity[0] / movement_factor * self.max_speed
             self.velocity[1] = self.velocity[1] / movement_factor * self.max_speed
         
